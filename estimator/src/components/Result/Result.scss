@@ -1,0 +1,20 @@
+.result-card {
+    h1  {
+        text-align: center;
+    }
+
+    .result {
+        text-align: center;
+        font-size: 100px;
+    }
+
+    .badge {
+        width: 100%;
+
+        span {
+            position: absolute;
+            font-size: 24px;
+            overflow: hidden;
+        }
+    }
+}

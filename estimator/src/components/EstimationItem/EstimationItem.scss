@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+
+.estimation-item {
+  border: 1px solid $gray-200;
+  margin: 10px 0;
+  padding: 10px;
+  text-align: center;
+
+  .form-label {
+    font-size: 18pt;
+  }
+}
