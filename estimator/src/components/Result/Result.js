@@ -1,11 +1,14 @@
 import "./Result.scss"
 import Card from 'react-bootstrap/Card';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import EstimationContext from "../../contexts/EstimationContext";
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 
 function Result() {
-    const storyPoints = [1, 2, 3, 5, 8, 13, 20, 40, 100]
+
+    const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+    const storyPoints = [1, 2, 3, 5, 8, 13, 20, 40, 100];
 
     const { globalEstimation } = useContext(EstimationContext);
     const estimationTopics = Object.keys(globalEstimation);
@@ -15,6 +18,15 @@ function Result() {
         return (Math.abs(current - totalEstimation) < Math.abs(result - totalEstimation) ? current : result);
     });
 
+    const copyStoryPoints = function () {
+        navigator.clipboard.writeText(closestStoryPoint);
+
+        setShowCopiedMessage(true);
+        setTimeout(() => {
+            setShowCopiedMessage(false);
+        }, 1000);
+    }
+
     return (
         <Card className="result-card">
             <Card.Body>
@@ -22,6 +34,8 @@ function Result() {
                 <Badge className="result">
                     {totalEstimation} {totalEstimation != closestStoryPoint && <span>({closestStoryPoint})</span>}
                 </Badge>
+                <Button className="w-100 mt-2" onClick={copyStoryPoints}>Copy Story Points</Button>
+                {showCopiedMessage && <p className="text-center">Story Points Copied!</p>}
             </Card.Body>
         </Card>
     );
