@@ -8,9 +8,14 @@ import EstimationContext from "../../contexts/EstimationContext";
 
 function EstimationItem(props) {
 
-  const { setTopicEstimation } = useContext(EstimationContext);
+  const { globalEstimation, setTopicEstimation } = useContext(EstimationContext);
 
   const [estimation, setEstimation] = useState(0);
+
+  useEffect(() => {
+    const score = globalEstimation[props.topic];
+    setEstimation(score ? score : 0);
+  }, [globalEstimation]);
 
   const onEstimationChange = (event, estimationState) => {
     setEstimation(event.target.value);

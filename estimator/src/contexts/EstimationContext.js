@@ -24,10 +24,14 @@ export const EstimationContextProvider = (props) => {
         setEstimation(localEstimation);
     }
 
+    const resetEstimation = () => {
+        setEstimation(defaultEstimation);
+    }
+
     const [estimation, setEstimation] = React.useState(defaultEstimation);
 
     return (
-        <EstimationContext.Provider value={{globalEstimation: estimation, setTopicEstimation}}>
+        <EstimationContext.Provider value={{globalEstimation: estimation, setTopicEstimation, resetEstimation}}>
             {props.children}
         </EstimationContext.Provider>
     )
