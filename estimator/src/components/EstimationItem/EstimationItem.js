@@ -1,5 +1,7 @@
 import "./EstimationItem.scss"
 import Form from 'react-bootstrap/Form';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
@@ -18,22 +20,39 @@ function EstimationItem(props) {
   }, [globalEstimation]);
 
   const onEstimationChange = (event, estimationState) => {
+
+    console.log(event.currentTarget.value);
+
     setEstimation(event.target.value);
     setTopicEstimation(props.topic, event.target.value);
   }
 
   return (
     <div className="estimation-item">
+
+
+
+
       <Form.Group className="mb-3">
         <Form.Label>{props.title}</Form.Label>
         <div key={`${props.topic}-radio`} className='mb-3'>
-          <Form.Check inline label={(<FontAwesomeIcon icon={faBan} />)} name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-1`} checked={estimation == "0"} onChange={onEstimationChange} value="0" />
-          <Form.Check inline label={(<FontAwesomeIcon icon={faAngleDoubleDown} />)} name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-2`} checked={estimation == "1"} onChange={onEstimationChange} value="1" />
-          <Form.Check inline label={(<FontAwesomeIcon icon={faCircle} />)} name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-3`} checked={estimation == "2"} onChange={onEstimationChange} value="2" />
-          <Form.Check inline label={(<FontAwesomeIcon icon={faAngleDoubleUp} />)} name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-4`} checked={estimation == "3"} onChange={onEstimationChange} value="3" />
+          <ButtonGroup className="mb-3">
+            <ToggleButton name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-1`} variant="outline-danger" checked={estimation == "0"} value="0" onChange={onEstimationChange}>
+              <FontAwesomeIcon icon={faBan} />
+            </ToggleButton>
+            <ToggleButton name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-2`} variant="outline-primary" checked={estimation == "1"} value="1" onChange={onEstimationChange}>
+              <FontAwesomeIcon icon={faAngleDoubleDown} />
+            </ToggleButton>
+            <ToggleButton name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-3`} variant="outline-primary" checked={estimation == "2"} value="2" onChange={onEstimationChange}>
+              <FontAwesomeIcon icon={faCircle} />
+            </ToggleButton>
+            <ToggleButton name={`${props.topic}-radio`} type="radio" id={`${props.topic}-radio-4`} variant="outline-primary" checked={estimation == "3"} value="3" onChange={onEstimationChange}>
+              <FontAwesomeIcon icon={faAngleDoubleUp} />
+            </ToggleButton>
+          </ButtonGroup>
         </div>
-      </Form.Group>
-    </div>
+      </Form.Group >
+    </div >
   );
 }
 
