@@ -20,9 +20,6 @@ function EstimationItem(props) {
   }, [globalEstimation]);
 
   const onEstimationChange = (event, estimationState) => {
-
-    console.log(event.currentTarget.value);
-
     setEstimation(event.target.value);
     setTopicEstimation(props.topic, event.target.value);
   }
