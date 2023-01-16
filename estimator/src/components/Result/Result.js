@@ -28,7 +28,7 @@ function Result() {
     }
 
     return (
-        <Card className="result-card">
+        <Card className="result-card mt-3 mt-sm-0">
             <Card.Body>
                 <h1>Your Estimation</h1>
                 <Badge className="result">
